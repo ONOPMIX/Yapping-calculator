@@ -1,69 +1,64 @@
-diff --git a//dev/null b/index.html
-index 0000000000000000000000000000000000000000..9857d890757182b44656fecce5c9dfaf01d5599e 100644
---- a//dev/null
-+++ b/index.html
-@@ -0,0 +1,64 @@
-+<!DOCTYPE html>
-+<html lang="ko">
-+<head>
-+  <meta charset="UTF-8" />
-+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-+  <title>포인트 시급 계산기</title>
-+  <style>
-+    *{box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
-+    body{margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f4f6f8}
-+    .card{background:#fff;padding:2rem;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.1);width:100%;max-width:420px}
-+    h1{text-align:center;font-size:1.6rem;margin-bottom:1.5rem}
-+    label{display:block;margin-bottom:.25rem;font-weight:600}
-+    input{width:100%;padding:.75rem 1rem;border:1px solid #ccd1d5;border-radius:8px;font-size:1rem;margin-bottom:1rem}
-+    button{width:100%;padding:.75rem;border:none;border-radius:8px;font-size:1rem;font-weight:700;background:#007bff;color:#fff;cursor:pointer;transition:background .2s}
-+    button:hover{background:#0056c2}
-+    .result p{margin:.4rem 0;font-size:1.05rem;font-weight:700;text-align:center}
-+  </style>
-+</head>
-+<body>
-+  <div class="card">
-+    <h1>포인트 시급 계산기</h1>
-+
-+    <label for="points">하루 획득 포인트</label>
-+    <input type="number" id="points" step="0.01" placeholder="예: 589.25"/>
-+
-+    <label for="value">포인트당 달러 가치 ($)</label>
-+    <input type="number" id="value" step="0.0001" value="0.01"/>
-+
-+    <label for="hours">하루 근무시간 (h)</label>
-+    <input type="number" id="hours" step="0.01" placeholder="예: 6"/>
-+
-+    <button id="calc">계산하기</button>
-+
-+    <div class="result" id="out"></div>
-+  </div>
-+
-+  <script>
-+    document.getElementById('calc').addEventListener('click', () => {
-+      const pts   = parseFloat(document.getElementById('points').value);
-+      const val   = parseFloat(document.getElementById('value').value);
-+      const hrs   = parseFloat(document.getElementById('hours').value);
-+
-+      if ([pts, val, hrs].some(isNaN)) { out('모든 값을 입력하세요.'); return; }
-+      if (hrs <= 0) { out('하루 근무시간은 0보다 커야 합니다.'); return; }
-+
-+      const dailyPay   = pts * val;
-+      const hourlyPay  = dailyPay / hrs;
-+      const weeklyPay  = dailyPay * 7;     // 7일 연속 근무 가정
-+      const monthlyPay = dailyPay * 30;    // 30일
-+      const yearlyPay  = dailyPay * 365;   // 365일
-+
-+      out(
-+        `시급: $${hourlyPay.toFixed(2)}<br>` +
-+        `일급: $${dailyPay.toFixed(2)}<br>` +
-+        `7일 급여: $${weeklyPay.toFixed(2)}<br>` +
-+        `30일 급여: $${monthlyPay.toFixed(2)}<br>` +
-+        `365일 급여: $${yearlyPay.toFixed(2)}`
-+      );
-+    });
-+
-+    function out(html) { document.getElementById('out').innerHTML = html; }
-+  </script>
-+</body>
-+</html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>포인트 시급 계산기</title>
+  <style>
+    *{box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+    body{margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f4f6f8}
+    .card{background:#fff;padding:2rem;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.1);width:100%;max-width:420px}
+    h1{text-align:center;font-size:1.6rem;margin-bottom:1.5rem}
+    label{display:block;margin-bottom:.25rem;font-weight:600}
+    input{width:100%;padding:.75rem 1rem;border:1px solid #ccd1d5;border-radius:8px;font-size:1rem;margin-bottom:1rem}
+    button{width:100%;padding:.75rem;border:none;border-radius:8px;font-size:1rem;font-weight:700;background:#007bff;color:#fff;cursor:pointer;transition:background .2s}
+    button:hover{background:#0056c2}
+    .result p{margin:.4rem 0;font-size:1.05rem;font-weight:700;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>포인트 시급 계산기</h1>
+
+    <label for="points">하루 획득 포인트</label>
+    <input type="number" id="points" step="0.01" placeholder="예: 589.25"/>
+
+    <label for="value">포인트당 달러 가치 ($)</label>
+    <input type="number" id="value" step="0.0001" value="0.01"/>
+
+    <label for="hours">하루 근무시간 (h)</label>
+    <input type="number" id="hours" step="0.01" placeholder="예: 6"/>
+
+    <button id="calc">계산하기</button>
+
+    <div class="result" id="out"></div>
+  </div>
+
+  <script>
+    document.getElementById('calc').addEventListener('click', () => {
+      const pts   = parseFloat(document.getElementById('points').value);
+      const val   = parseFloat(document.getElementById('value').value);
+      const hrs   = parseFloat(document.getElementById('hours').value);
+
+      if ([pts, val, hrs].some(isNaN)) { out('모든 값을 입력하세요.'); return; }
+      if (hrs <= 0) { out('하루 근무시간은 0보다 커야 합니다.'); return; }
+
+      const dailyPay   = pts * val;
+      const hourlyPay  = dailyPay / hrs;
+      const weeklyPay  = dailyPay * 7;     // 7일 연속 근무 가정
+      const monthlyPay = dailyPay * 30;    // 30일
+      const yearlyPay  = dailyPay * 365;   // 365일
+
+      out(
+        `시급: $${hourlyPay.toFixed(2)}<br>` +
+        `일급: $${dailyPay.toFixed(2)}<br>` +
+        `7일 급여: $${weeklyPay.toFixed(2)}<br>` +
+        `30일 급여: $${monthlyPay.toFixed(2)}<br>` +
+        `365일 급여: $${yearlyPay.toFixed(2)}`
+      );
+    });
+
+    function out(html) { document.getElementById('out').innerHTML = html; }
+  </script>
+</body>
+</html>
