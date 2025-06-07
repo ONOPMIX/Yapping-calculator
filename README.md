@@ -25,3 +25,20 @@ https://<your-username>.github.io/Yapping-calculator/
 Replace `<your-username>` with your GitHub account name and visit the link to use the calculator.
 
 Every push to the `main` branch will automatically update the page. Share the URL so anyone can access the calculator.
+
+## Security recommendations
+
+The calculator is a static web page, so the only way the files can change is if
+someone pushes new commits to this repository. Follow these guidelines to keep
+your GitHub Pages site safe:
+
+1. **Restrict write access** to trusted collaborators only.
+2. **Enable two-factor authentication** on your GitHub account to prevent
+   unauthorized logins.
+3. **Review pull requests** and commit history regularly for unexpected changes
+   before merging.
+4. Consider using **branch protection rules** so modifications require review or
+   signed commits.
+
+As long as your repository is secure and only serves the files in this repo,
+visitors cannot inject viruses simply by loading the page.
