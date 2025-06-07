@@ -23,3 +23,5 @@ https://<your-username>.github.io/Yapping-calculator/
 ```
 
 Replace `<your-username>` with your GitHub account name and visit the link to use the calculator.
+
+Every push to the `main` branch will automatically update the page. Share the URL so anyone can access the calculator.

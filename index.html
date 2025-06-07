@@ -28,6 +28,7 @@
     h1{text-align:center;font-size:1.6rem;margin:0 0 0.5rem}
     label{font-weight:600}
     input{width:100%;padding:.75rem 1rem;border:1px solid #ccd1d5;border-radius:8px;font-size:1rem}
+    input:focus{outline-color:#007bff}
     button{width:100%;padding:.75rem;border:none;border-radius:8px;font-size:1rem;font-weight:700;background:#007bff;color:#fff;cursor:pointer;transition:background .2s}
     button:hover{background:#0056c2}
     .result{margin-top:.5rem}
@@ -53,10 +54,23 @@
   </div>
 
   <script>
-    document.getElementById('calc').addEventListener('click', () => {
-      const pts   = parseFloat(document.getElementById('points').value);
-      const val   = parseFloat(document.getElementById('value').value);
-      const hrs   = parseFloat(document.getElementById('hours').value);
+    const calcBtn = document.getElementById('calc');
+    const inputs = ['points','value','hours'].map(id => document.getElementById(id));
+
+    calcBtn.addEventListener('click', calculate);
+    inputs.forEach(el => el.addEventListener('keydown', e => {
+      if (e.key === 'Enter') calculate();
+    }));
+
+    function parseNum(v) {
+      if (!v) return NaN;
+      return parseFloat(v.replace(',', '.'));
+    }
+
+    function calculate() {
+      const pts = parseNum(inputs[0].value);
+      const val = parseNum(inputs[1].value);
+      const hrs = parseNum(inputs[2].value);
 
       if ([pts, val, hrs].some(isNaN)) { out('모든 값을 입력하세요.'); return; }
       if (hrs <= 0) { out('하루 근무시간은 0보다 커야 합니다.'); return; }
@@ -74,7 +88,7 @@
         `30일 급여: $${monthlyPay.toFixed(2)}<br>` +
         `365일 급여: $${yearlyPay.toFixed(2)}`
       );
-    });
+    }
 
     function out(html) { document.getElementById('out').innerHTML = html; }
   </script>
